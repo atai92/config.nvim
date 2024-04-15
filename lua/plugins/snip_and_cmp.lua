@@ -24,7 +24,9 @@ return {
       local luasnip = require("luasnip")
       local cmp = require("cmp")
 
-      opts.mapping = vim.tbl_extend("force", opts.mapping, {
+      -- Disable the enter keymap to select the selected completion item - use shift-enter instead
+      opts.mapping["<CR>"] = nil
+      opts.mapping = vim.tbl_deep_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_next_item()
