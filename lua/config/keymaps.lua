@@ -17,3 +17,36 @@ vim.keymap.set(
   require("telescope.builtin").resume,
   { noremap = true, silent = true, desc = "Resume the last telescope session." }
 )
+
+vim.keymap.set("n", "<leader>n", function()
+  require("telescope").load_extension("notify")
+  require("telescope").extensions.notify.notify()
+end, { desc = "Show notifications history in telescope." })
+
+vim.keymap.set(
+  "n",
+  "<leader>y",
+  "<CMD>let @+ = expand('%:')<CR>",
+  { desc = "Copy the current file's relative path to the clipboard." }
+)
+
+vim.keymap.set(
+  "n",
+  "<leader>Y",
+  "<CMD>let @+ = expand('%:p')<CR>",
+  { desc = "Copy the current file's absolute path to the clipboard." }
+)
+
+vim.keymap.set(
+  "n",
+  "<leader>sr",
+  "<CMD>lua require('telescope.builtin').registers()<CR>",
+  { desc = "Search through registers." }
+)
+
+vim.keymap.set(
+  "n",
+  "<leader>be",
+  "<CMD>lua require('telescope.builtin').buffers()<CR>",
+  { desc = "Search through buffers." }
+)

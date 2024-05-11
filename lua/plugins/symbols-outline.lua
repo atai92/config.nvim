@@ -1,8 +1,9 @@
 return {
   {
-    "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
-    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
+    "hedyhli/outline.nvim",
+    lazy = true,
+    cmd = { "Outline", "OutlineOpen" },
+    keys = { { "<leader>cs", "<cmd>OutlineOpen<cr>", desc = "Symbols Outline" } },
     config = true,
   },
 }

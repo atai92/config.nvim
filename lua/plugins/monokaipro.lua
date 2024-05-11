@@ -6,7 +6,7 @@ return {
     require("lualine").setup({
       options = {
         -- ... your lualine config
-        theme = "onedark",
+        theme = "monokai-pro",
       },
     })
     require("monokai-pro").setup({

@@ -1,13 +1,43 @@
+local map = vim.keymap.set
+
 return {
   "scalameta/nvim-metals",
   dependencies = {
     "nvim-lua/plenary.nvim",
+    "nvim-neotest/neotest",
+    {
+      "mfussenegger/nvim-dap",
+      config = function(self, opts)
+        -- Debug settings if you're using nvim-dap
+        local dap = require("dap")
+
+        dap.configurations.scala = {
+          {
+            type = "scala",
+            request = "launch",
+            name = "RunOrTest",
+            metals = {
+              runType = "runOrTestFile",
+              --args = { "firstArg", "secondArg", "thirdArg" }, -- here just as an example
+            },
+          },
+          {
+            type = "scala",
+            request = "launch",
+            name = "Test Target",
+            metals = {
+              runType = "testTarget",
+            },
+          },
+        }
+      end,
+    },
   },
   ft = { "scala", "sbt", "java" },
   opts = function()
     local metals_config = require("metals").bare_config()
     metals_config.on_attach = function(client, bufnr)
-      -- your on_attach function
+      require("metals").setup_dap()
     end
 
     return metals_config
